@@ -86,9 +86,8 @@ void ResumeWinWatchA(
     LARGE_INTEGER timePaused;
     timePaused.QuadPart = time.QuadPart - w->PauseTime.QuadPart;
     w->TimePaused.QuadPart += timePaused.QuadPart;
+    w->State = WINWATCH_STATE_RUNNING;
   }
-
-  w->State = WINWATCH_STATE_RUNNING;
 }
 
 #endif //_WINWATCH_H
