@@ -69,9 +69,8 @@ void PauseWinWatchA(
 
   if (w->State == WINWATCH_STATE_RUNNING) {
     res = QueryPerformanceCounter(&w->PauseTime);
+    w->State = WINWATCH_STATE_PAUSED;
   }
-
-  w->State = WINWATCH_STATE_PAUSED;
 }
 
 void ResumeWinWatchA(
