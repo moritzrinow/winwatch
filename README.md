@@ -11,6 +11,6 @@ for (int i = 0; i < 1000; i++) {
 
 StopWinWatch(w);
 
-double elapsedMs = WinWatchElapsedMilli(w);
+double elapsedMs = WinWatchElapsedMilliD(w);
 printf("ElapsedMs: %f\n", elapsedMs);
 ```
