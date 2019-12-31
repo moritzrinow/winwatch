@@ -21,10 +21,13 @@ typedef struct WinWatch {
 #define PauseWinWatch(w) PauseWinWatchA(&w) // Pauses a winwatch. The time between now and the next resume will be measured and subtracted from the final measurement
 #define ResumeWinWatch(w) ResumeWinWatchA(&w) // Resumes a winwatch
 
-#define WinWatchElapsedTicks(w) (w.StopTime.QuadPart - w.StartTime.QuadPart - w.TimePaused.QuadPart) // Get the elapsed ticks as 64bit signed integer
-#define WinWatchElapsedMicro(w) (WinWatchElapsedTicks(w) * 1000000 / w.Frequency.QuadPart) // Get the elapsed microseconds as 64 signed integer
-#define WinWatchElapsedMilli(w) ((double)WinWatchElapsedMicro(w) / 1000.0) // Get the elapsed milliseconds as 64bit float
-#define WinWatchElapsedSeconds(w) ((double)WinWatchElapsedMicro(w) / 1000000.0) // Get the elapsed seconds as 64bit float
+#define WinWatchElapsedTicksL(w) (w.StopTime.QuadPart - w.StartTime.QuadPart - w.TimePaused.QuadPart) // Get the elapsed ticks as 64bit signed integer
+#define WinWatchElapsedMicroL(w) (WinWatchElapsedTicks(w) * 1000000 / w.Frequency.QuadPart) // Get the elapsed microseconds as 64 signed integer
+#define WinWatchElapsedMilliL(w) (WinWatchElapsedMicroL(w) / 1000) // Get the elapsed milliseconds as 64bit signed integer
+#define WinWatchElapsedSecondsL(w) (WinWatchElapsedMicroL(w) / 1000000) // Get the elapsed seconds as 64bit signed integer
+#define WinWatchElapsedMicroD(w) ((double)WinWatchElapsedTicksL(w) * 1000000.0 / (double)w.Frequency.QuadPart) // Get the elapsed microseconds as 64bit float
+#define WinWatchElapsedMilliD(w) ((double)WinWatchElapsedMicroD(w) / 1000.0) // Get the elapsed milliseconds as 64bit float
+#define WinWatchElapsedSecondsD(w) ((double)WinWatchElapsedMicroD(w) / 1000000.0) // Get the elapsed seconds as 64bit float
 
 static WinWatch StartWinWatchA(
   void
