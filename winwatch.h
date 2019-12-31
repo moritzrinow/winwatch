@@ -26,7 +26,7 @@ typedef struct WinWatch {
 #define WinWatchElapsedMilli(w) ((double)WinWatchElapsedMicro(w) / 1000.0) // Get the elapsed milliseconds as 64bit float
 #define WinWatchElapsedSeconds(w) ((double)WinWatchElapsedMicro(w) / 1000000.0) // Get the elapsed seconds as 64bit float
 
-WinWatch StartWinWatchA(
+static WinWatch StartWinWatchA(
   void
 )
 {
@@ -45,7 +45,7 @@ WinWatch StartWinWatchA(
   return watch;
 }
 
-void StopWinWatchA(
+static void StopWinWatchA(
   WinWatch *w
 )
 {
@@ -61,7 +61,7 @@ void StopWinWatchA(
   w->State = WINWATCH_STATE_STOPPED;
 }
 
-void PauseWinWatchA(
+static void PauseWinWatchA(
   WinWatch *w
 )
 {
@@ -73,7 +73,7 @@ void PauseWinWatchA(
   }
 }
 
-void ResumeWinWatchA(
+static void ResumeWinWatchA(
   WinWatch *w
 )
 {
